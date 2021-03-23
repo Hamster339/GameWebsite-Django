@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html>
+	<head lang ="en">
+		<meta charset ="UTF-8" />
+		<title>
+			{% block title_block %}
+			{% endblock %}
+		</title>
+	</head>
+	<body>
+		<div>
+			{% block body_block %}
+			{% endblock %}
+		</div>
+		<hr/>
+		<div>
+			<input type="search" id="search-input" class="form-control ds-input" placeholder="Search..." />
+		</div>
+        <div>
+            <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'gamewebsite:my_account' %}">My Account</a></li>
+            {% else %}        
+                <li><a href="{% url 'gamewebsite:log_in' %}">Log in</a></li>
+            {% endif %}
+                <li><a href="{% url 'gamewebsite:contact_us' %}">Contact us</a></li>
+            </ul>
+        </div>
+	</body>
+</html>
