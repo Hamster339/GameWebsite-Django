@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends'gamewebsite/base.html' %} 
+{% loadstaticfiles %}
+
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Login(gamewebsite)</title>  
+</head>  
+<body>  
+    <div id="login">  
+        <h1>Login</h1>  
+        <form method="post">  
+            <input type="text" placeholder="username"></input>  
+            <input type="password" placeholder="password"></input>
+            <button class="but" type="submit">Login</button>     
+        </form>  
+    </div>
+    <div>
+        <ul>
+            <p>No account?</p> 
+            <a href="{% url 'gamewebsite:sign_up' %}">Sign up here</a>
+        </ul>
+    </div>  
+</body>  
+</html>  
