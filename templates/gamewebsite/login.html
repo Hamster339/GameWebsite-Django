@@ -5,7 +5,7 @@
 <html lang="en">  
 <head>  
     <meta charset="UTF-8">  
-    <title>Login(gamewebsite)</title>  
+    <title>Log in(gamewebsite)</title>  
 </head>  
 <body>  
     <div id="login">  
@@ -13,14 +13,12 @@
         <form method="post">  
             <input type="text" placeholder="username"></input>  
             <input type="password" placeholder="password"></input>
-            <button class="but" type="submit">Login</button>     
+            <a href="{% url 'gamewebsite:myprofile' %}"><button class="but" type="submit">Login</button></a>    
         </form>  
     </div>
     <div>
-        <ul>
-            <p>No account?</p> 
-            <a href="{% url 'gamewebsite:sign_up' %}">Sign up here</a>
-        </ul>
+        <p>No account?</p> 
+        <a href="{% url 'gamewebsite:sign_up' %}">Sign up here</a>
     </div>  
 </body>  
 </html>  
