@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from django.http import HttpResponse
 from gamewebsite.models import Game
 
@@ -39,4 +40,5 @@ def edit_account(request):
     
 def contact_us(request):
     return render(request, "gamewebsite/contact_us.html")
+
 
