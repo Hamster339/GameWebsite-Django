@@ -15,7 +15,7 @@ def game_library(request):
 
 #    context_dict['newest']= newest_games
     
-    return render(request, 'gamewebsite/base.html') #, context= context_dict)
+    return render(request, 'gamewebsite/game_library.html') #, context= context_dict)
  
 # the user can search for other users that fit their requirements
 # def search_matches(request):
@@ -23,15 +23,15 @@ def game_library(request):
 
 # the user can log in to their account
 def log_in(request):
-    return render(request, 'gamewebsite/log_in.html')
+    return render(request, 'gamewebsite/login.html')
 
 # the user can view their account details
 def my_account(request):
-    return render(request, "gamewebsite/my_account.html")
+    return render(request, "gamewebsite/my_profile.html")
 
 # the user can edit their account
-def edit_account(request):
-    return render(request, "gamewebsite/edit_account.html")
+# def edit_account(request):
+    # return render(request, "gamewebsite/edit_account.html")
     
 # displays information about a user selected game
 # def game_page(request, game_name_slug):
@@ -42,3 +42,5 @@ def contact_us(request):
     return render(request, "gamewebsite/contact_us.html")
 
 
+def sign_up(request):
+    return render(request, "gamewebsite/signup.html")
