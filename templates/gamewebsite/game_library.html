@@ -1,12 +1,10 @@
 {% extends 'gamewebsite/base.html' %}
 {% load staticfiles %}
 
-<html>
-    <head lang ="en">
-		<meta charset ="UTF-8" />
-	    <title>Game library</title>
-	</head>
-	<body>
+{% block title_block %}
+	Game library
+{% endblock %}
+{% block body_block %}
 	    <h1>Most Popular</h1>
 	    <img src=".jpg" width="" height="">
 		<img src=".jpg" width="" height="">
@@ -22,5 +20,4 @@
 		<img src=".jpg" width="" height="">
 		<img src=".jpg" width="" height="">
 		<img src=".jpg" width="" height="">
-	</body>
-</html>
+{% endblock %}

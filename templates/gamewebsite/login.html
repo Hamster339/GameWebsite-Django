@@ -1,24 +1,21 @@
 <!DOCTYPE html>
-{% extends'gamewebsite/base.html' %} 
-{% loadstaticfiles %}
+{% extends 'gamewebsite/base.html' %} 
+{% load staticfiles %}
 
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <title>Log in(gamewebsite)</title>  
-</head>  
-<body>  
+{% block title_block %}
+	Log in(gamewebsite)
+{% endblock %}	
+{% block body_block %}
     <div id="login">  
         <h1>Login</h1>  
         <form method="post">  
             <input type="text" placeholder="username"></input>  
             <input type="password" placeholder="password"></input>
-            <a href="{% url 'gamewebsite:myprofile' %}"><button class="but" type="submit">Login</button></a>    
+            <a href="{% url 'gamewebsite:my_account' %}"><button class="but" type="submit">Login</button></a>    
         </form>  
     </div>
     <div>
         <p>No account?</p> 
         <a href="{% url 'gamewebsite:sign_up' %}">Sign up here</a>
     </div>  
-</body>  
-</html>  
+{% endblock %} 

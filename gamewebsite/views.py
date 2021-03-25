@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from django.http import HttpResponse
-from gamewebsite.models import Game
+#from gamewebsite.models import Game
 
 # displays games the user can choose from
 def game_library(request):
@@ -27,7 +27,7 @@ def log_in(request):
 
 # the user can view their account details
 def my_account(request):
-    return render(request, "gamewebsite/my_profile.html")
+    return render(request, "gamewebsite/my_account.html")
 
 # the user can edit their account
 # def edit_account(request):

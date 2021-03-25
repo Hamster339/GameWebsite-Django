@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-{% extends'gamewebsite/base.html' %} 
-{% loadstaticfiles %}
+{% extends 'gamewebsite/base.html' %} 
+{% load staticfiles %}
 
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Contact us(gamewebsite.com)</title>
-    </head>
-    <body>
+{% block title_block %}
+	Contact us(gamewebsite.com)
+{% endblock %}
+
+{% block body_block %}
         <h1>Contact us:</h1>
         <p>email: momo12345@gmail.com</p>
-    </body>
-</html>
+{% endblock %}
