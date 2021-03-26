@@ -13,6 +13,16 @@ class TimeZones(models.Model):
 class Languages(models.Model):
     language = models.CharField(max_length=128)
 
+# Represents a game
+class Game(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    thumbNail = models.ImageField(upload_to="media/game_thumbnails", blank=True)
+    description = models.CharField(max_length=128)
+    date_added = models.DateField()
+
+    def __str__(self):
+        return self.name
+
 
 # Represents user profiles
 class UserProfile(models.Model):
@@ -25,17 +35,6 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
-
-
-# Represents a game
-class Game(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-    thumbNail = models.ImageField(upload_to="media/game_thumbnails", blank=True)
-    description = models.CharField(max_length=128)
-    date_added = models.DateField()
-
-    def __str__(self):
-        return self.name
 
 
 # Represents a user's request for a match on a particular game
