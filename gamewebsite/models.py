@@ -10,7 +10,7 @@ class TimeZones(models.Model):
 
 
 # All languages available for users to speak
-class AcceptedLanguages(models.Model):
+class Languages(models.Model):
     language = models.CharField(max_length=128)
 
 
@@ -21,15 +21,10 @@ class UserProfile(models.Model):
     profilePicture = models.ImageField(upload_to="media/profile_pictures", blank=True)
     contactInfo = models.CharField(max_length=128)
     timeZone = models.ForeignKey(TimeZones, on_delete=models.CASCADE)
+    languages = models.ManyToManyField(Languages)
 
     def __str__(self):
         return self.user.username
-
-
-# Links users and AcceptedLanguages with many to many relationship
-class UserHasLanguage(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    language = models.ForeignKey(AcceptedLanguages, on_delete=models.CASCADE)
 
 
 # Represents a game
@@ -47,8 +42,9 @@ class Game(models.Model):
 class MatchRequests(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
-    language = models.ForeignKey(AcceptedLanguages, on_delete=models.CASCADE)
+    language = models.ForeignKey(Languages, on_delete=models.CASCADE)
     time = models.TimeField(blank=True)
+    capacity = models.IntegerField(default=1)
 
     def __str__(self):
         return "{" \
@@ -61,8 +57,7 @@ class MatchRequests(models.Model):
 
 # Represents two users that have been matched
 class AcceptedMatches(models.Model):
-    user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="primaryUser")
-    user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="secondaryUser")
+    users = models.ManyToManyField(User)
 
     def __str__(self):
-        return "{" + self.user1.username + "," + self.user2.username + "}"
+        return "{" + self.users.username + "}"
