@@ -61,8 +61,8 @@ class MatchRequests(models.Model):
 
 # Represents two users that have been matched
 class AcceptedMatches(models.Model):
-    user1 = models.ForeignKey(User, on_delete=models.CASCADE)
-    user2 = models.ForeignKey(User, on_delete=models.CASCADE)
+    user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="primaryUser")
+    user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="secondaryUser")
 
     def __str__(self):
         return "{" + self.user1.username + "," + self.user2.username + "}"
