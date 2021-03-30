@@ -42,7 +42,6 @@ class Game(models.Model):
     def __str__(self):
         return self.name
 
-
 # Represents a user's request for a match on a particular game
 class MatchRequests(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
