@@ -2,5 +2,28 @@
 {% load static %}
 
 {% block title_block %}
-	Game Page
+	{% if game %}
+		{{ game.name }}
+	{% else %}
+		Game not found
+	{% endif %}
+{% endblock %}
+
+{% block body_block %}
+	{% if game %}
+		<h1> {{ game.name }} </h1>
+		
+<!-- 		<div>
+			<img src="{{ game.thumbNail.url }}" >
+		</div> -->
+	<!-- display picture of the game -->
+	
+	<!-- display description of the game -->
+		<div>
+			<p>{{ game.description }}</p>
+		</div>
+	<!-- display name of the game -->
+	{% else %}
+		Game not available.
+	{% endif %}
 {% endblock %}
