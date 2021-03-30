@@ -27,6 +27,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 
+
 # Represents a game
 class Game(models.Model):
     name = models.CharField(max_length=128, unique=True)
