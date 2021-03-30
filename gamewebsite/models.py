@@ -28,7 +28,6 @@ class Game(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    profilePicture = models.ImageField(upload_to="media/profile_pictures", blank=True)
     contactInfo = models.CharField(max_length=128)
     timeZone = models.ForeignKey(TimeZones, on_delete=models.CASCADE)
     languages = models.ManyToManyField(Languages)
