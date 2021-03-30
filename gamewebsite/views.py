@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from django.http import HttpResponse
-#from gamewebsite.models import Game
+from gamewebsite.models import Game
 
 # displays games the user can choose from
 def game_library(request):
@@ -34,9 +34,20 @@ def my_account(request):
     # return render(request, "gamewebsite/edit_account.html")
     
 # displays information about a user selected game
-# def game_page(request, game_name_slug):
+def game_page(request, game_name_slug):
+    context_dict = {}
     
-    # return HttpResponse('game page')
+    try:
+        
+        game = Game.objects.get(slug=game_name_slug)
+     
+        context_dict['game'] = game
+        #context_dict['thumbnail'] = game.thumbNail
+    
+    except: 
+        context_dict['game'] = None
+
+    return render(request, "gamewebsite/game_page.html", context=context_dict)
     
 def contact_us(request):
     return render(request, "gamewebsite/contact_us.html")
