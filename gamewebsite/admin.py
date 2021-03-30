@@ -11,3 +11,4 @@ admin.site.register(UserProfile)
 admin.site.register(MatchRequests)
 admin.site.register(AcceptedMatches)
 admin.site.register(Game, GameAdmin)
+
