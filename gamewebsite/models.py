@@ -8,10 +8,15 @@ from django.template.defaultfilters import slugify
 class TimeZones(models.Model):
     timeZone = models.CharField(max_length=128, unique=True)
 
+    def __str__(self):
+        return self.timeZone
 
 # All languages available for users to speak
 class Languages(models.Model):
     language = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.language
 
 
 # Represents user profiles

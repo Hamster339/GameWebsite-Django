@@ -1,5 +1,7 @@
 import os
 import datetime
+from PIL import Image
+from django.core.files import File
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'WAD2_GameWebsite.settings')
 
@@ -37,8 +39,8 @@ def populate():
                  {"language": "French"},
                  {"language": "Spanish"}]
 
-    games = [{"name": "CS-GO", "description": "a shooty game", "date_added": datetime.datetime(2020, 5, 17, 12, 2, 3)},
-             {"name": "Animal Crossing", "description": "gamey game", "date_added": datetime.datetime(2019, 5, 17, 11, 2, 3)}]
+    games = [{"name": "CS-GO", "description": "a shooty game", "thumbNail": Image.open("databaseTestData/CS-GO.jpg"), "date_added": datetime.datetime(2020, 5, 17, 12, 2, 3)},
+             {"name": "Animal Crossing", "description": "gamey game", "thumbNail": Image.open("databaseTestData/Animal-Crossing.jpg"), "date_added": datetime.datetime(2019, 5, 17, 11, 2, 3)}]
 
     for i in timezones:
         t = TimeZones.objects.get_or_create(timeZone=i["timezone"])[0]
