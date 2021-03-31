@@ -14,11 +14,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-print(__file__)
-print(os.path.dirname(__file__))
-print(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-print("base dir ", BASE_DIR)
-print("template dir ", TEMPLATE_DIR)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
