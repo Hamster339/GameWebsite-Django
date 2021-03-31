@@ -23,7 +23,41 @@ def game_library(request):
 
 # the user can log in to their account
 def log_in(request):
-    return render(request, 'gamewebsite/login.html')
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(username=username, password=password)
+        if user:     
+            if user.is_active:
+                login(request, user)
+                return redirect(reverse('gamewebsite:my_account'))
+            else:
+                return HttpResponse("Your account is disabled.")
+        else:
+            return HttpResponse("Invalid login.")
+    else:
+        return render(request, 'gamewebsite/log_in.html')
+    
+def edit_account(request):
+    user = User.objects.get(username=request.user.username)
+    userprofile = UserProfile.objects.get(user=request.user)
+ 
+    if request.method == "POST":
+        user_form = UserForm(request.POST)
+        userprofile_form = UserProfileForm(request.POST)
+        if user_form.is_valid() * userprofile_form.is_valid():
+            user_cd = user_form.cleaned_data
+            userprofile_cd = userprofile_form.cleaned_data
+            userprofile.contact_info = userprofile_cd['contactInfo']
+            user.save()
+            userprofile.save()
+        return HttpResponseRedirect('gamewebsite/my_account/')
+    else:
+        user_form = UserForm(instance=request.user)
+        userprofile_form = UserProfileForm(initial={"contactInfo":userprofile.contact_info})
+        return render(request, "gamewebsite/myself_edit.html", {"user_form":user_form, "userprofile_form":userprofile_form})
+    
 
 # the user can view their account details
 def my_account(request):
@@ -54,4 +88,29 @@ def contact_us(request):
 
 
 def sign_up(request):
-    return render(request, "gamewebsite/signup.html")
+    registered = False
+    
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+
+        if user_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            registered = True
+        else:
+            print(user_form.errors)
+    else:
+        user_form = UserForm()
+
+    return render(request, 'gamewebsite/sign_up.html',
+                  context = {'user_form': user_form,
+                             'registered': registered})
+@login_required
+def restricted(request):
+    return HttpResponse("You are logged in.")
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect(reverse('gamewebsite:game_library'))
