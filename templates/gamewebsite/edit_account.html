@@ -1,0 +1,33 @@
+<!doctype html>
+{% extends "base.html" %}
+ 
+{% block title %}Edit account{% endblock %}
+ 
+{% block content %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Edit account(gamewebsite)</title>
+    </head>
+<div class="row text-center vertical-middle-sm">
+    <h1>Edit account</h1>
+    <div class="row">
+        <div class="col-md-6" >
+        <form class="form-horizontal" action="." method="post">{% csrf_token %}
+            <div class="row">
+                <div class="col-md-4 text-right"><span>Username:</span></div>
+                <div class="col-md-8 text-left">{{user.username}}</div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 text-right"><span>Contact info:</span></div>
+                <div class="col-md-8 text-left">{{userprofile_form.contactInfo}}</div>
+            </div>
+            <div class="row">
+                <input type="submit" class="btn btn-primary btn-lg" value="Submit">
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
