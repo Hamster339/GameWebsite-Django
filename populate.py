@@ -39,8 +39,8 @@ def populate():
                  {"language": "French"},
                  {"language": "Spanish"}]
 
-    games = [{"name": "CS-GO", "description": "a shooty game", "thumbNail": Image.open("databaseTestData/CS-GO.jpg"), "date_added": datetime.datetime(2020, 5, 17, 12, 2, 3)},
-             {"name": "Animal Crossing", "description": "gamey game", "thumbNail": Image.open("databaseTestData/Animal-Crossing.jpg"), "date_added": datetime.datetime(2019, 5, 17, 11, 2, 3)}]
+    games = [{"name": "CS-GO", "description": "a shooty game", "thumbNail": "csgo.jpg", "date_added": datetime.datetime(2020, 5, 17, 12, 2, 3)},
+             {"name": "Animal Crossing", "description": "gamey game", "thumbNail": "Animal-Crossing.jpg", "date_added": datetime.datetime(2019, 5, 17, 11, 2, 3)}]
 
     for i in timezones:
         t = TimeZones.objects.get_or_create(timeZone=i["timezone"])[0]
@@ -53,6 +53,9 @@ def populate():
     for i in games:
         g = Game.objects.get_or_create(name=i["name"], description=i["description"], date_added=i["date_added"])[0]
         g.save()
+
+        filepath = "databaseTestData/" + i["thumbNail"]
+        g.thumbNail.save(i["thumbNail"], open(filepath,"rb"))
 
 
 if __name__ == "__main__":
