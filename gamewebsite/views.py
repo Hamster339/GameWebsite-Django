@@ -42,7 +42,7 @@ def game_page(request, game_name_slug):
         game = Game.objects.get(slug=game_name_slug)
      
         context_dict['game'] = game
-        #context_dict['thumbnail'] = game.thumbNail
+        context_dict['thumbNail'] = game.thumbNail
     
     except: 
         context_dict['game'] = None
