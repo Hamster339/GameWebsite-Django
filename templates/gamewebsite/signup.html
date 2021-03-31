@@ -1,26 +1,23 @@
 <!doctype html>
-{% extends "base.html" %}
-{%loadstaticfiles%}
+{% extends "gamewebsite/base.html" %}
+{% load static %}
 
-{%blocktitle_block%}
+{% block title_block %}
 Sign up
-{%endblock%}
+{% endblock %}
 
-{%blockbody_block%}
+{% block body_block %}
     <h1>Sign up</h1>
-{%ifregistered%}
-<strong>Thank you for signing up</strong>
-<a href="{%url'gamewebsite:my_account'%}">Return to my account.</a><br/>
+    {% if registered %}
+    <a href="{%url'gamewebsite:my_account'%}">Return to my account.</a><br/>
+    {% else %}
+    <form id="user_form" method="post" action="{%url'gamewebsite:sign_up'%}" enctype="multipart/form-data">
 
-{%else%}
-Rangosays:<strong>Sign up here!</strong><br/>
-<form id="user_form" method="post" action="{%url'gamewebsite:sign_up'%}" enctype="multipart/form-data">
-
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
 
     <input type="submit" name="submit" value="Register" /> 
-</form>
-{%endif%} 
-{%endblock%}
+    </form>
+    {% endif %} 
+{% endblock %}
