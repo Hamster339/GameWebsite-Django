@@ -14,7 +14,7 @@
 			<ul>
 				{% for game in popular %}
 				<li>
-					<a href="/gamewebsite/Game-Library/{{ game.slug }}/">{{ game.name }}</a>
+					<a href="{% url 'gamewebsite:game_page' game.slug %}">{{ game.name }}</a>
 					<img src="{{ game.thumbNail.url }}" />
 				</li>
 				{% endfor %}
@@ -40,15 +40,5 @@
 
 		{% endif %}
 		</div>
-		<!-- <img src="csgo.jpg" width="500px" height="500px">
-
-		<img src="lol.jpg" width="500px" height="500px">
-		<img src="starcraft.jpg" width="500px" height="500px">
-		<img src="dota2.jpg" width="500px" height="500px">
-		<h1>Newest Game</h1>
-		<img src="Rainbow Six.jpg" width="500px" height="500px">
-		<img src="csgo.jpg" width="500px" height="500px">
-		<img src="pubg.jpg" width="500px" height="500px">
-		<img src="starcraft.jpg" width="500px" height="500px"> -->
 		
 {% endblock %}
