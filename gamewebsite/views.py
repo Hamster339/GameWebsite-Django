@@ -18,12 +18,10 @@ def game_library(request):
     context_dict = {}
     # return 4 most popular in descending order
     
-    # return 4 best rated in descending order
-    
     # return 4 newest in descending order
     newest_games = Game.objects.order_by('-date_added')[:4]
 
-    context_dict['newest']= newest_games
+    context_dict['newest'] = newest_games
     
     print(context_dict['newest'])
     return render(request, 'gamewebsite/game_library.html' , context= context_dict)
@@ -31,6 +29,15 @@ def game_library(request):
 # the user can search for other users that fit their requirements
 # def search_matches(request):
     # return render(request, 'gamewebsite/search_matches.html')
+
+# displays results page for a user searching for a game
+def search(request):
+
+    query = request.GET.get("query")
+    result = Game.objects.filter(name__icontains=query)
+
+    context_dict = {"query": query, "result": result}
+    return render(request, 'gamewebsite/search.html', context=context_dict)
 
 # the user can log in to their account
 def log_in(request):

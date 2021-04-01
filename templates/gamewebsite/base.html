@@ -16,7 +16,9 @@
 		</div>
 		<hr/>
 		<div>
-			<input type="search" id="search-input" class="form-control ds-input" placeholder="Search..." />
+            <form action = "{% url 'gamewebsite:search' %}" method="get">
+			    <input name = "query" type="text" placeholder="Search for games..." />
+            </form>
 		</div>
         <div>
             <ul>

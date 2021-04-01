@@ -1,0 +1,21 @@
+{% extends 'gamewebsite/base.html' %}
+{% load static %}
+
+{% block title_block %}
+	Search for games
+{% endblock %}
+
+{% block body_block %}
+    <div>
+        {% if result %}
+        <ul>
+            {% for game in result %}
+                <li><a href="{% url 'gamewebsite:game_page' game.slug %}">{{ game.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            no games matching {{ query }} found
+        {% endif %}
+
+    </div>
+{% endblock %}

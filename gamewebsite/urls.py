@@ -5,7 +5,8 @@ app_name = 'gamewebsite'
 
 urlpatterns = [
     path('', views .game_library, name = 'game_library'),
-    path('Game-Library/', views .game_library, name = 'game_library'),
+    path('Game-Library/', views.game_library, name = 'game_library'),
+    path('search/', views.search, name = 'search'),
     path('contact-us/', views.contact_us, name = 'contact_us'),
     path('login/', views.log_in, name = 'log_in'),
     path('my-account/', views.my_account, name = 'my_account'),
