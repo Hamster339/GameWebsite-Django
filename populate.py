@@ -55,7 +55,8 @@ def populate():
         g.save()
 
         filepath = "databaseTestData/" + i["thumbNail"]
-        g.thumbNail.save(i["thumbNail"], open(filepath,"rb"))
+        with open(filepath, "rb") as f:
+            g.thumbNail.save(i["thumbNail"], f)
 
 
 if __name__ == "__main__":
