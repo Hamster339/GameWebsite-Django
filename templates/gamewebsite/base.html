@@ -20,6 +20,7 @@
 		</div>
         <div>
             <ul>
+			<li><a href="{% url 'gamewebsite:game_library' %}">Library</a>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'gamewebsite:my_account' %}">My Account</a></li>
                  <li><a href="{% url 'gamewebsite:log_out' %}">Logout</a></li>

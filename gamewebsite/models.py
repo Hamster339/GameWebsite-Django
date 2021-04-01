@@ -40,6 +40,9 @@ class Game(models.Model):
     date_added = models.DateField()
     slug = models.SlugField(unique=True)
     
+    # needs to increment each time a user searches for a match for this game
+    searches = models.IntegerField(default=0)
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Game, self).save(*args, **kwargs)
