@@ -22,8 +22,10 @@
             <ul>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'gamewebsite:my_account' %}">My Account</a></li>
+                 <li><a href="{% url 'gamewebsite:log_out' %}">Logout</a></li>
             {% else %}        
                 <li><a href="{% url 'gamewebsite:log_in' %}">Log in</a></li>
+                <li><a href="{% url 'gamewebsite:sign_up' %}">sign up</a></li>
             {% endif %}
                 <li><a href="{% url 'gamewebsite:contact_us' %}">Contact us</a></li>
             </ul>
