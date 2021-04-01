@@ -59,8 +59,10 @@ def log_in(request):
     
 def edit_account(request):
     user = User.objects.get(username=request.user.username)
-    userprofile = UserProfile.objects.get(user=request.user)
- 
+    userprofile = UserProfile.objects.get(user=request.user) if hasattr(request.user,
+                                                                        'userprofiles') else UserProfile.objects.create(
+        user=request.user)
+    
     if request.method == "POST":
         user_form = UserForm(request.POST)
         userprofile_form = UserProfileForm(request.POST)
@@ -71,11 +73,6 @@ def edit_account(request):
             user.save()
             userprofile.save()
         return HttpResponseRedirect('gamewebsite/my_account/')
-    else:
-        user_form = UserForm(instance=request.user)
-        userprofile_form = UserProfileForm(initial={"contactInfo":userprofile.contact_info})
-        return render(request, "gamewebsite/myself_edit.html", {"user_form":user_form, "userprofile_form":userprofile_form})
-    
 
 # the user can view their account details
 @login_required(login_url='gamewebsite/log_in/')
