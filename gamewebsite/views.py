@@ -15,17 +15,18 @@ from django.contrib.auth.decorators import login_required
 
 # displays games the user can choose from
 def game_library(request):
-#    context_dict = {}
+    context_dict = {}
     # return 4 most popular in descending order
     
     # return 4 best rated in descending order
     
     # return 4 newest in descending order
-#    newest_games = Category.objetcs.order_by('-date_added')[:4]
+    newest_games = Game.objects.order_by('-date_added')[:4]
 
-#    context_dict['newest']= newest_games
+    context_dict['newest']= newest_games
     
-    return render(request, 'gamewebsite/game_library.html') #, context= context_dict)
+    print(context_dict['newest'])
+    return render(request, 'gamewebsite/game_library.html' , context= context_dict)
  
 # the user can search for other users that fit their requirements
 # def search_matches(request):
