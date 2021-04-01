@@ -24,7 +24,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     contactInfo = models.CharField(max_length=128)
-    timeZone = models.ForeignKey(TimeZones, on_delete=models.CASCADE)
+    timeZone = models.ForeignKey(TimeZones, default=None, null=True, on_delete=models.CASCADE)
     languages = models.ManyToManyField(Languages)
 
     def __str__(self):
@@ -39,6 +39,9 @@ class Game(models.Model):
     description = models.CharField(max_length=128)
     date_added = models.DateField()
     slug = models.SlugField(unique=True)
+    
+    # needs to increment each time a user searches for a match for this game
+    searches = models.IntegerField(default=0)
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
