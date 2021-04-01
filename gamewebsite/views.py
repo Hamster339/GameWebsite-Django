@@ -71,13 +71,14 @@ def edit_account(request):
     
 
 # the user can view their account details
+@login_required(login_url='gamewebsite/log_in/')
 def my_account(request):
-    return render(request, "gamewebsite/my_account.html")
-
-# the user can edit their account
-# def edit_account(request):
-    # return render(request, "gamewebsite/edit_account.html")
-    
+    user = User.objects.get(username=request.user.username)
+    userprofile = UserProfile.objects.get(user=request.user) if hasattr(request.user,
+                                                                        'userprofiles') else UserProfile.objects.create(
+        user=request.user)
+    return render(request,'gamewebsite/my_account.html',{'user':user,'userprofile':userprofile}, context_instance=RequestContext(request))
+  
 # displays information about a user selected game
 def game_page(request, game_name_slug):
     context_dict = {}
