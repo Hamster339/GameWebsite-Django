@@ -4,34 +4,34 @@
 <html>
 	<head lang ="en">
 		<meta charset ="UTF-8" />
+        <link rel="stylesheet" href="{% static "css/base.css" %}">
 		<title>
 			{% block title_block %}
 			{% endblock %}
 		</title>
 	</head>
 	<body>
-		<div>
-			{% block body_block %}
-			{% endblock %}
-		</div>
-		<hr/>
-		<div>
+        <div class="navbar">
             <form action = "{% url 'gamewebsite:search' %}" method="get">
 			    <input name = "query" type="text" placeholder="Search for games..." />
             </form>
-		</div>
-        <div>
+
             <ul>
 			<li><a href="{% url 'gamewebsite:game_library' %}">Library</a>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'gamewebsite:my_account' %}">My Account</a></li>
                  <li><a href="{% url 'gamewebsite:log_out' %}">Logout</a></li>
-            {% else %}        
+            {% else %}
                 <li><a href="{% url 'gamewebsite:log_in' %}">Log in</a></li>
                 <li><a href="{% url 'gamewebsite:sign_up' %}">sign up</a></li>
             {% endif %}
                 <li><a href="{% url 'gamewebsite:contact_us' %}">Contact us</a></li>
             </ul>
+        <hr/>
         </div>
+		<div>
+			{% block body_block %}
+			{% endblock %}
+		</div>
 	</body>
 </html>
