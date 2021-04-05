@@ -55,7 +55,7 @@ class MatchRequests(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     language = models.ForeignKey(Languages, on_delete=models.CASCADE)
-    time = models.TimeField(blank=True)
+    timeZone = models.ForeignKey(TimeZones, on_delete=models.CASCADE)
     capacity = models.IntegerField(default=1)
 
     def __str__(self):
