@@ -15,12 +15,10 @@ def game_library(request):
     context_dict = {}
     # return 4 most popular in descending order
     
-    # return 4 best rated in descending order
-    
     # return 4 newest in descending order
     newest_games = Game.objects.order_by('-date_added')[:4]
 
-    context_dict['newest']= newest_games
+    context_dict['newest'] = newest_games
     
     print(context_dict['newest'])
     return render(request, 'gamewebsite/game_library.html' , context= context_dict)
@@ -28,6 +26,15 @@ def game_library(request):
 # the user can search for other users that fit their requirements
 # def search_matches(request):
     # return render(request, 'gamewebsite/search_matches.html')
+
+# displays results page for a user searching for a game
+def search(request):
+
+    query = request.GET.get("query")
+    result = Game.objects.filter(name__icontains=query)
+
+    context_dict = {"query": query, "result": result}
+    return render(request, 'gamewebsite/search.html', context=context_dict)
 
 # the user can log in to their account
 def log_in(request):
@@ -49,8 +56,10 @@ def log_in(request):
     
 def edit_account(request):
     user = User.objects.get(username=request.user.username)
-    userprofile = UserProfile.objects.get(user=request.user)
- 
+    userprofile = UserProfile.objects.get(user=request.user) if hasattr(request.user,
+                                                                        'userprofiles') else UserProfile.objects.create(
+        user=request.user)
+    
     if request.method == "POST":
         user_form = UserForm(request.POST)
         userprofile_form = UserProfileForm(request.POST)
@@ -61,11 +70,6 @@ def edit_account(request):
             user.save()
             userprofile.save()
         return HttpResponseRedirect('gamewebsite/my_account/')
-    else:
-        user_form = UserForm(instance=request.user)
-        userprofile_form = UserProfileForm(initial={"contactInfo":userprofile.contact_info})
-        return render(request, "gamewebsite/myself_edit.html", {"user_form":user_form, "userprofile_form":userprofile_form})
-    
 
 # the user can view their account details
 @login_required(login_url='gamewebsite/log_in/')

@@ -1,0 +1,32 @@
+
+.navbar {
+    background: black;
+}
+
+.navbar li {
+    display: inline;
+}
+.navbar ul {
+    display: inline;
+}
+.navbar form {
+    display: inline;
+    padding-left: 20px;
+
+}
+
+.navbar li a {
+    display: inline-block;
+    padding: 14px 16px ;
+    text-decoration: none;
+    color: gray;
+}
+
+.navbar input {
+
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
