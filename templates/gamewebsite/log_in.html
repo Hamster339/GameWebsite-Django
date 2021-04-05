@@ -1,17 +1,23 @@
-<!doctype html>
 {% extends "gamewebsite/base.html" %}
 
 {% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static "css/log_in.css" %}">
+{% endblock %}
 {% block title_block %}
     Login
 {% endblock %}
 {% block body_block %}
-    <h1>Login</h1>
-    <form id="login_form" method="post" action="{% url 'gamewebsite:log_in' %}">
-        {% csrf_token %}
-        Username: <input type="text" name="username" value="" size="50" /> <br />
-        Password: <input type="password" name="password" value="" size="50" /> <br />
-        <input type="submit" value="submit" />
-    </form>      
-    <a href="{% url 'gamewebsite:sign_up' %}">No account? Sign up here</a>
+    <h1>Log in</h1>
+	<div class="form">
+		<form id="login_form" method="post" action="{% url 'gamewebsite:log_in' %}">
+			{% csrf_token %}
+			Username: <input class="center-input" type="text" name="username" value="" size="50" /> <br />
+			Password: <input class="center-input" type="password" name="password" value="" size="50" /> <br />
+			<input class="center-input" type="submit" value="Log in" />
+		</form> 
+	</div>
+	<div class="sign-up">
+		<a class="sign-up" href="{% url 'gamewebsite:sign_up' %}">No account? Sign up here</a>
+	</div>
 {% endblock %}
