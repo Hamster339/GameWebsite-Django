@@ -14,8 +14,9 @@
 			<ul>
 				{% for game in popular %}
 				<li>
-					<a href="{% url 'gamewebsite:game_page' game.slug %}">{{ game.name }}</a>
-					<img src="{{ game.thumbNail.url }}" />
+					<a href="{% url 'gamewebsite:game_page' game.slug %}">
+						<img src="{{ game.thumbNail.url }}" width="100px" height="100px" alt ={{ game.name }}/>
+					</a>
 				</li>
 				{% endfor %}
 			</ul>
