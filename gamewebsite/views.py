@@ -1,11 +1,8 @@
-from django.shortcuts import render
-
-from django.http import HttpResponse
 from gamewebsite.models import Game
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import UserProfile
-from .forms import UserForm, UserProfileForm
+from .forms import UserForm, UserProfileForm, RequestForm
 from django.contrib.auth import authenticate, login 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -80,9 +77,11 @@ def my_account(request):
     return render(request,'gamewebsite/my_account.html',{'user':user,'userprofile':userprofile}, context_instance=RequestContext(request))
   
 # displays information about a user selected game
+# allows user to search for others to play the selected game with
 def game_page(request, game_name_slug):
     context_dict = {}
-    
+    current_user = User.objects.get(username=request.user.username)
+    user = current_user.username
     try:
         
         game = Game.objects.get(slug=game_name_slug)
@@ -92,7 +91,21 @@ def game_page(request, game_name_slug):
     
     except: 
         context_dict['game'] = None
+        
+    # and the game exists!
+    if request.user.is_authenticated:
 
+        # form = RequestForm(initial = {'game': game, 'user' : request.user })
+        # form = RequestForm(gamename=game.name, name=request.user.username)
+        if request.method =='POST':
+            form = RequestForm(request.POST)
+        
+        if form.is_valid():
+            form.save(commit=True)
+            
+            # confirm
+        context_dict['form'] = form 
+    
     return render(request, "gamewebsite/game_page.html", context=context_dict)
     
 def contact_us(request):
