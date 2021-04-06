@@ -75,7 +75,7 @@ def edit_account(request):
 @login_required(login_url='gamewebsite/log_in/')
 def my_account(request):
     user = User.objects.get(username=request.user.username)
-    userprofile = UserProfile.objects.get(user=request.user)
+    userprofile = UserProfile.objects.get_or_create(user=request.user)
     return render(request,'gamewebsite/my_account.html',{'user':user,'userprofile':userprofile})
   
 # displays information about a user selected game
@@ -135,6 +135,7 @@ def sign_up(request):
             user.set_password(user.password)
             user.save()
             registered = True
+            return redirect(reverse('gamewebsite:log_in'))
         else:
             print(user_form.errors)
     else:
