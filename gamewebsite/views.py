@@ -14,7 +14,7 @@ from django.contrib.auth.decorators import login_required
 def game_library(request):
     context_dict = {}
     # return 4 most popular in descending order
-    most_popular = Game.objects.order_by('searches')[:4]
+    most_popular = Game.objects.order_by('-searches')[:4]
     # return 4 newest in descending order
     newest_games = Game.objects.order_by('-date_added')[:4]
 
@@ -103,7 +103,7 @@ def game_page(request, game_name_slug):
 
             data = request.POST.copy()
             data["user"] = User.objects.get(username=request.user.username)
-            data["game"] = game
+            data["game"] = context_dict['game']
 
 
             form = RequestForm(data)
@@ -115,6 +115,9 @@ def game_page(request, game_name_slug):
 
         else:
             form = RequestForm()
+            #increment search counter
+            context_dict['game'].searches = context_dict['game'].searches + 1
+            game.save()
 
         context_dict['form'] = form
     return render(request, "gamewebsite/game_page.html", context=context_dict)
