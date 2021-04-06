@@ -32,15 +32,19 @@
 		<h2>Search for other players</h2>
 		<form id= "RequestForm" method="post" action="{% url 'gamewebsite:game_page' game.slug %}">
 			{% csrf_token %}
-			{% for hidden in form.hidden_fields %}
-				{{ hidden }}
-			{% endfor %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
 			{% for field in form.visible_fields %}
-				{{ field.errors }}
-				{{ field.help_text }}
-				{{ field }}
+                {% if request.method == 'POST' %}
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                {% endif %}
+                {{ field.label }} </br>
+				{{ field }} </br>
+                </br>
 			{% endfor %}
-			<input type="submit" name="submit" value="Search"/>
+			<input type="submit" value="Submit"/>
 		</form>
 	{% else %}
 		<p><a href="{% url 'gamewebsite:log_in' %}">Log in</a> to search for other players</p>
