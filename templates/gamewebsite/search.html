@@ -1,6 +1,8 @@
 {% extends 'gamewebsite/base.html' %}
 {% load static %}
-
+{% block style %}
+<link rel="stylesheet" href="{% static "css/search.css" %}">
+{% endblock %}
 {% block title_block %}
 	Search for games
 {% endblock %}
@@ -8,7 +10,7 @@
 {% block body_block %}
     <div>
         {% if result %}
-        <ul>
+        <ul class="results">
             {% for game in result %}
                 <li><a href="{% url 'gamewebsite:game_page' game.slug %}">{{ game.name }}</a></li>
             {% endfor %}
