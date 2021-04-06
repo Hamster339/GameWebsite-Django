@@ -116,7 +116,7 @@ def game_page(request, game_name_slug):
         else:
             form = RequestForm()
 
-    context_dict['form'] = form
+        context_dict['form'] = form
     return render(request, "gamewebsite/game_page.html", context=context_dict)
     
 def contact_us(request):
