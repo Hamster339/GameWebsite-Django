@@ -75,10 +75,8 @@ def edit_account(request):
 @login_required(login_url='gamewebsite/log_in/')
 def my_account(request):
     user = User.objects.get(username=request.user.username)
-    userprofile = UserProfile.objects.get(user=request.user) if hasattr(request.user,
-                                                                        'userprofiles') else UserProfile.objects.create(
-        user=request.user)
-    return render(request,'gamewebsite/my_account.html',{'user':user,'userprofile':userprofile}, context_instance=RequestContext(request))
+    userprofile = UserProfile.objects.get(user=request.user)
+    return render(request,'gamewebsite/my_account.html',{'user':user,'userprofile':userprofile})
   
 # displays information about a user selected game
 # allows user to search for others to play the selected game with
