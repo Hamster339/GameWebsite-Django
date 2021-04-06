@@ -14,13 +14,13 @@ from django.contrib.auth.decorators import login_required
 def game_library(request):
     context_dict = {}
     # return 4 most popular in descending order
-    
+    most_popular = Game.objects.order_by('searches')[:4]
     # return 4 newest in descending order
     newest_games = Game.objects.order_by('-date_added')[:4]
 
     context_dict['newest'] = newest_games
-    
-    print(context_dict['newest'])
+    context_dict['popular'] = most_popular
+   
     return render(request, 'gamewebsite/game_library.html' , context= context_dict)
  
 # the user can search for other users that fit their requirements

@@ -1,11 +1,16 @@
 {% extends 'gamewebsite/base.html' %} 
 {% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static "css/contact_us.css" %}">
 
+{% endblock %}
 {% block title_block %}
 	Contact us(gamewebsite.com)
 {% endblock %}
 
 {% block body_block %}
+	<div class ="content">
         <h1>Contact us:</h1>
         <p>email: momo12345@gmail.com</p>
+	</div>
 {% endblock %}

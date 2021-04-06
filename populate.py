@@ -39,8 +39,11 @@ def populate():
                  {"language": "French"},
                  {"language": "Spanish"}]
 
-    games = [{"name": "CS-GO", "description": "a shooty game", "thumbNail": "csgo.jpg", "date_added": datetime.datetime(2020, 5, 17, 12, 2, 3)},
-             {"name": "Animal Crossing", "description": "gamey game", "thumbNail": "Animal-Crossing.jpg", "date_added": datetime.datetime(2019, 5, 17, 11, 2, 3)}]
+    games = [{"name": "CS-GO", "description": "a shooty game", "thumbNail": "csgo.jpg", "date_added": datetime.datetime(2020, 5, 17, 12, 2, 3), "searches":3},
+             {"name": "Animal Crossing", "description": "gamey game", "thumbNail": "Animal-Crossing.jpg", "date_added": datetime.datetime(2019, 5, 17, 11, 2, 3), "searches":5},
+             {"name": "League of Legends", "description": "another game", "thumbNail": "lol.jpg", "date_added": datetime.datetime(2017, 5, 17, 11, 2, 3),"searches":10},
+             {"name": "Starcraft", "description": "strategy game", "thumbNail": "starcraft.jpg", "date_added": datetime.datetime(2016, 5, 17, 11, 2, 1),"searches":16},
+             {"name": "Dota 2", "description": "game", "thumbNail": "dota2.jpg", "date_added": datetime.datetime(2013, 5, 17, 11, 2, 3),"searches":1}]
 
     for i in timezones:
         t = TimeZones.objects.get_or_create(timeZone=i["timezone"])[0]
@@ -51,7 +54,7 @@ def populate():
         l.save()
 
     for i in games:
-        g = Game.objects.get_or_create(name=i["name"], description=i["description"], date_added=i["date_added"])[0]
+        g = Game.objects.get_or_create(name=i["name"], description=i["description"], date_added=i["date_added"], searches=i["searches"])[0]
         g.save()
 
         filepath = "databaseTestData/" + i["thumbNail"]

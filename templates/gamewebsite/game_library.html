@@ -1,21 +1,24 @@
 {% extends 'gamewebsite/base.html' %}
 {% load static %}
-
+{% block style %}
+<link rel="stylesheet" href="{% static "css/game_library.css" %}">
+{% endblock %}
 {% block title_block %}
 	Game library
 {% endblock %}
 {% block body_block %}
-        <p style="background-color:rgb(160,160,160) "></p>
+
 		
-		<div>
-	    <h1>Most Popular</h1>
+		<div class=games>
+	    <h2>Most Popular</h2>
 		
 		{% if popular %}
-			<ul>
+			<ul class=game-list>
 				{% for game in popular %}
 				<li>
-					<a href="{% url 'gamewebsite:game_page' game.slug %}">{{ game.name }}</a>
-					<img src="{{ game.thumbNail.url }}" />
+					<a href="{% url 'gamewebsite:game_page' game.slug %}">
+						<img src="{{ game.thumbNail.url }}" width="100px" height="100px" alt ={{ game.name }}/>
+					</a>
 				</li>
 				{% endfor %}
 			</ul>
@@ -24,11 +27,11 @@
 		{% endif %}
 		</div>
 		
-		<div>
-		<h1>Newest Games</h1>
+		<div class=games>
+		<h2>Newest Games</h2>
 		
 		{% if newest %}
-			<ul>
+			<ul class=game-list>
 			{% for game in newest %}
 				<li>
 					<a href="{% url 'gamewebsite:game_page' game.slug %}">
