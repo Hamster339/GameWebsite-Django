@@ -1,6 +1,8 @@
 {% extends 'gamewebsite/base.html' %}
 {% load static %}
-
+{% block style %}
+<link rel="stylesheet" href="{% static "css/game_page.css" %}">
+{% endblock %}
 {% block title_block %}
 	{% if game %}
 		{{ game.name }}
@@ -14,7 +16,7 @@
 		<h1> {{ game.name }} </h1>
 		
     	<div>
-			<img src="{{ game.thumbNail.url }}" >
+			<img src="{{ game.thumbNail.url }}" width="200px" height="200px" >
 		</div>
 	<!-- display picture of the game -->
 	
